@@ -43,10 +43,12 @@ checkDropPendingCols = function ( database = db.getName(),  showNames = false) {
     }); 
     var ret = "Found " + counter + " drop-pending collections."; 
        
-    if (counter > 0 && checkIfSecondary() == true && checkPV() == true) {
-        ret = ret + " You may be experiencing SERVER-39089.";
-    } else if (counter > 0) {
-        ret = ret + " Not a secondary or using PV1";
+    if (counter > 0) { 
+        if (checkIfSecondary() == true && checkPV() == true) {
+            ret = ret + " You may be experiencing SERVER-39089.";
+        } else {
+            ret = ret + " Not a secondary or using PV1";
+        }
     };
     return ret;
 };
