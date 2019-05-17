@@ -45,7 +45,7 @@ checkDropPendingCols = function ( database = db.getName(),  showNames = false) {
        
     if (counter > 0 && checkIfSecondary() == true && checkPV() == true) {
         ret = ret + " You may be experiencing SERVER-39089.";
-    } else {
+    } else if (counter > 0) {
         ret = ret + " Not a secondary or using PV1";
     };
     return ret;
