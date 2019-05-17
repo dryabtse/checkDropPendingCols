@@ -16,6 +16,9 @@ checkDropPendingCols = function ( database = db.getName(),  showNames = false) {
     };
     
     assert.eq((typeof database), "string", "The \'database\' parameter hasn't been specified!"); 
+
+    rs.slaveOk();
+
     var res = db.getSiblingDB(database).runCommand({
         listCollections: 1,
         filter: {},
